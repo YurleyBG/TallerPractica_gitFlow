@@ -25,7 +25,9 @@ import com.electro.electro_app.domain.entities.TipoDocumento;
 
 @RestController
 @RequestMapping("/api/persona")
+
 public class PersonaController {
+
     @Autowired
     private IPersonaService personaService;
 
@@ -40,6 +42,7 @@ public class PersonaController {
         return personaService.findAll();
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<?> view(@PathVariable Long id) {
         Optional<Persona> personaOptional = personaService.findById(id);
@@ -48,6 +51,7 @@ public class PersonaController {
         }
         return ResponseEntity.notFound().build();
     }
+
 
     @PostMapping
     public ResponseEntity<?> create(@RequestBody PersonaRequestDTO personaRequestDTO) {
@@ -70,6 +74,7 @@ public class PersonaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedpersona);
     }
 
+
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Persona persona) {
         Optional<Persona> personaOptional = personaService.findById(id);
@@ -81,6 +86,7 @@ public class PersonaController {
         return ResponseEntity.notFound().build();
     }
 
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         Optional<Persona> personaOptional = personaService.delete(id);
@@ -89,4 +95,6 @@ public class PersonaController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    
 }
