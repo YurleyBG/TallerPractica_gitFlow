@@ -20,7 +20,10 @@ import com.electro.electro_app.domain.entities.TipoDocumento;
 
 @RestController
 @RequestMapping("/api/tipo_documento")
+
 public class TipoDocumentoController {
+
+
     @Autowired
     private ITipoDocumentoService tipoDocumentoService;
 
@@ -38,11 +41,13 @@ public class TipoDocumentoController {
         return ResponseEntity.notFound().build();
     }
 
+
     @PostMapping
     public ResponseEntity<?> create(@RequestBody TipoDocumento tipoDocumento) {
         return ResponseEntity.status(HttpStatus.CREATED).body(tipoDocumentoService.save(tipoDocumento));
     }
     
+
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody TipoDocumento tipoDocumento) {
         Optional<TipoDocumento> tipoDocumentoOptional = tipoDocumentoService.findById(id);
@@ -54,12 +59,14 @@ public class TipoDocumentoController {
         return ResponseEntity.notFound().build();
     }
 
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         Optional<TipoDocumento> tipoDocumentoOptional = tipoDocumentoService.delete(id);
         if (tipoDocumentoOptional.isPresent()) {
             return ResponseEntity.ok(tipoDocumentoOptional.orElseThrow());
         }
+       
         return ResponseEntity.notFound().build();
     }
 }
