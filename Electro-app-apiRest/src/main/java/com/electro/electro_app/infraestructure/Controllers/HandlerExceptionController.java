@@ -54,4 +54,15 @@ public class HandlerExceptionController {
 
         return error;
     }
+    @ExceptionHandler({ArithmeticException.class})
+    public ResponseEntity<ErrorCustom> divisionByZero(Exception ex) {
+
+        ErrorCustom error = new ErrorCustom();
+        error.setDate(new Date());
+        error.setError("Error division por cero!");
+        error.setMessage(ex.getMessage());
+        error.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(error);
+    }
 }
