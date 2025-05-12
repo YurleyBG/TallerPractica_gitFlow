@@ -65,6 +65,7 @@ public class CountryController {
         countryService.delete(id);
         return ResponseEntity.ok(country);
     }
+    // add validation post create
     private ResponseEntity<?> validation(BindingResult result){
 
         Map<String, String> errors = new HashMap<>();
